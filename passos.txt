@@ -1,3 +1,27 @@
 Configurar o git local (como configurar a conta do git no computador)
 git config --global user.name sofiadomingues2703
 git config --global user.email sofiabuenodomingues@gmail.com
+
+Criar um projeto: 
+
+dotnet new mvc -o Pokedex 
+
+EXECUTAR PROJETO:
+
+dotnet watch run 
+
+mas poderia usar apenas dotnet run, porém o watch adiciona um recurso que é utilizado para recarregar o código enquanto
+ele estiver em execução, caso haja alguma alteração durante a escrita 
+
+ANOTAÇÕES 
+
+@RenderBody() = Ele será o respondável por pegar e juntar o código com o layout e coloca no randerbody 
+
+este processo acima é chamado de renderização 
+
+
+    public IActionResult Index() : é chamado de ação e esta ação pega o layout e cria a página 
+
+    método = função, uma função SEMPRE termina com parentese 
+
+    model = classe 

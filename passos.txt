@@ -1,0 +1,3 @@
+Configurar o git local (como configurar a conta do git no computador)
+git config --global user.name sofiadomingues2703
+git config --global user.email sofiabuenodomingues@gmail.com

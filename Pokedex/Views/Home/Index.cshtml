@@ -1,8 +1,74 @@
-﻿@{
+﻿@model List<Pokemon>
+@{
     ViewData["Title"] = "Home Page";
+    var tipos = (List<Tipo>)ViewData["Tipos"];
+        string Cor(string nome)
+        {
+            return tipos
+            .Where(t => t.Nome == nome)
+            .Select(t => t.Cor)
+            .FirstOrDefault();
+        }
 }
 
-<div class="text-center">
-    <h1 class="display-4">Pokedex </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="pt-5 pb-3 text-center container">
+    <div class="row">
+        <div class="col mx-auto">
+            <h1>Pokédex</h1>
+            <div class="group">
+                <button id="btn-all" class="btn btn-md my-2 text-white bg-dark btn-filter">Ver
+                    Todos</button>
+                @foreach (var tipo in tipos)
+                {
+                    <button id="btn-aço" class="btn btn-sm my-2 text-white btn-filter"
+                        style="background-color:@tipo.Cor">@tipo.Nome</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+
+            @foreach (var pokemon in Model)
+            {
+                <!-- Card Pokemon - Inicio -->
+                <div class="col">
+                    <div class="card shadow-sm cursor-pointer @string.Join(' ', pokemon.Tipo)">
+                        <img src="@pokemon.Imagem" class="card-img-top" width="100%" height="320" alt="@pokemon.Nome" />
+                        <div class="card-body">
+                            <p class="card-text mb-0">Nº @pokemon.Numero.ToString("000")</p>
+                            <h3 class="card-title">@pokemon.Nome</h3>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    @foreach (var tipo in pokemon.Tipo)
+                                    {
+                                        <a href="#" class="btn my-2 text-white" 
+                                        style="background-color:@Cor(tipo)">@tipo</a>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Pokemon - Fim -->
+            }
+
+
+
+
+
+
+            <div id="zeroPokemon" class="col-lg-12 text-center" hidden>
+                <h1 class="my-3 text-danger">Nenhum Pokemon Encontrado</h1>
+            </div>
+        </div>
+
+
+    </div>
 </div>
